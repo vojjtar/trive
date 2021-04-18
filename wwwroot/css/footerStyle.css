@@ -1,0 +1,47 @@
+body{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 0;
+    padding: 0;
+
+}
+html{
+    height: 100%;
+}
+
+
+.footer{
+    margin-top: 2rem;
+
+    color: white;
+    height: 2.2rem;
+    background-color: #30303b;
+
+    /* text-align: center; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 100%;
+}
+
+#githubLogo{
+    height: 1.7rem;
+
+   /* position: absolute; */
+}
+
+#githubLink{
+    margin-left: 0.6rem;
+    text-decoration: none;
+    color: white;
+
+    transition-duration: 0.5s;
+}
+#githubLink:hover{
+    transform: scale(1.1);
+}

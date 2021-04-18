@@ -1,0 +1,40 @@
+@model triviaWebASPNET.ViewModels.LoginRegisterModel
+
+
+@{
+    ViewData["Title"] = "[TRIVE]";
+}
+
+
+<link rel="stylesheet" href="~/css/loginRegister.css">
+
+
+
+@{
+    if (Model != null)
+    {
+        <h3>@Model.errorMessage</h3>
+    }
+}
+
+<div id="divBackButton">
+    <a href="/">
+        <button id="backBut">←</button>
+    </a>
+
+    <h1 id="nadpisText">Login Page</h1>
+</div>
+
+<form action="/loginRegister/login" method="POST">
+    <div class="">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="inputFormy" required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="inputFormy" autocomplete="off" required>
+    </div>
+    <button type="submit" id="submitButton">Login</button>
+</form>
+<a href="/loginRegister/register" id="toOtherPage">→ Register Page</a>
+

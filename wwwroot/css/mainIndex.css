@@ -1,0 +1,139 @@
+body{
+    background-image: url('../images/random_grey_variations.png');
+
+    animation: fadein 2s;
+
+    font-family: 'Poppins', sans-serif;
+
+}
+
+:root {
+    --purpleDark: #10a5d3;
+    --purpleLight: #2ac3f1;
+
+}
+
+
+#nadpisDiv{
+    width: 100%;
+    height: 8rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    text-align: center;
+
+    padding-left: 0;
+    padding-right: 0;
+
+    background-color: #10a5d38a;
+}
+
+#nadpis{
+    font-size: 3rem;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+#wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0rem;
+    text-align: center;
+
+}
+
+#spacerLoginRegister{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.divNaBut{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.buttony{
+
+
+    width: 12rem;
+    height: 4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  
+    background-color: #30303b;
+    color: white;
+    border: 0px;
+    border-radius: 0px;
+  
+    font-size: 2rem;
+  
+    transition: ease-out 0.4s;
+  
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 var(--purpleLight);
+    transition: ease-out 0.4s;
+  
+  }
+.buttony:hover{
+    color: white;
+    box-shadow: inset 0 100px 0 0 var(--purpleDark), 0 0px 10px var(--purpleLight); 
+}
+
+#guestBut{
+    width: 26.5rem;
+}
+#scoreBoardBut{
+    width: 26.5rem;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+
+@media screen and (max-width: 600px){
+    .buttony{
+        width: 8rem;
+        height: 3rem;
+        font-size: 1rem;
+    }
+    #guestBut{
+        width: 18.5rem;
+        height: 3rem;
+    }
+    #scoreBoardBut{
+        width: 18.5rem;
+        height: 3rem;
+    }
+
+    .buttonNavbar{
+        display: none;
+    }
+    #sandwich{
+        display: inline;
+    }
+
+    #nadpis{
+        font-size: 1.5rem;
+    }
+    #nadpisDiv{
+        height: 4rem;
+        padding-top: 1rem;
+    }
+
+}
+
+
+@media screen and (max-width: 900px){
+    #navbar{
+        padding-right: 0;
+    }
+}

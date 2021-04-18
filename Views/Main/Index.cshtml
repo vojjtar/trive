@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "[TRIVE]";
+}
+
+
+<div id="wrapperMain">
+
+    <link rel="stylesheet" href="~/css/mainIndex.css">
+
+    <div id="wrapper">
+        <div id="nadpisDiv">
+            <h1 id="nadpis">[TRIVE]</h1>
+        </div>
+        <div id="horniDiv" class="divNaBut">
+            <a href="/loginRegister/login">
+                <button class="buttony">LOGIN</button></a> <!-- to a musi bejt tady jinak to proste dela whitespace a divnou caru na strance -->
+            <span id="spacerLoginRegister"></span>
+            <a href="/loginRegister/register">
+                <button class="buttony">REGISTER</button>
+            </a>
+        </div>
+        <div class="dolniDiv" class="divNaBut">
+            <form action="/Trivia/trivia" method="POST">
+                <button type="submit" class="buttony" id="guestBut">GUEST</button>
+            </form>
+        </div>
+        <div class="dolniDiv" class="divNaBut">
+            <a href="/trivia/scoreboard">
+                <button class="buttony" id="scoreBoardBut">SCOREBOARD</button>
+            </a>
+        </div>
+    </div>
+</div>

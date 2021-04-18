@@ -1,0 +1,74 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/random_grey_variations.png');
+  
+    color: white;
+
+
+    animation: fadein 2s;
+  }
+
+:root {
+    --purpleDark: #10a5d3;
+    --purpleLight: #2ac3f1;
+}
+
+#scoreWrap{
+    border: 2px solid var(--purpleDark);
+    background-color: #30303b;
+    box-shadow: 0 0px 10px var(--purpleLight);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 6rem;
+    width: 80%;
+  
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+    padding-bottom: 0.5rem;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#divBackButton{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+#nadpisText{
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#backBut{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.5rem;
+  
+    background-color: #30303b;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+  
+    font-size: 1.5rem;
+  
+    transition: ease-out 0.6s;
+  
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 var(--purpleDark);
+}
+
+#backBut:hover{
+    color: white;
+    box-shadow: inset 0 100px 0 0 var(--purpleDark), 0 0px 10px var(--purpleLight);
+}

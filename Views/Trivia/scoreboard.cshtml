@@ -1,0 +1,37 @@
+@model triviaWebASPNET.ViewModels.ScoreBoard
+
+@{
+    ViewData["Title"] = "[TRIVE]";
+}
+
+@{
+    List<string> jmeno = new List<string>();
+    List<string> score = new List<string>();
+
+    if (Model != null)
+    {
+        jmeno = Model.jmena;
+        score = Model.score;
+    }
+}
+
+<link rel="stylesheet" href="~/css/scoreBoard.css">
+
+<div id="scoreWrap">
+    <div id="divBackButton">
+        <a href="/">
+            <button id="backBut">←</button>
+        </a>
+
+        <h1 id="nadpisText">[NEJLEPSI HRACI]</h1>
+
+    </div>
+
+    @{
+        for (int i = 0; i < jmeno.Count; i++)
+        {
+            <h2>@String.Format("{0} - {1}", jmeno[i], score[i])</h2>
+        }
+    }
+</div>
+

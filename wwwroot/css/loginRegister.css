@@ -1,0 +1,164 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/random_grey_variations.png');
+  
+    color: white;
+
+
+    animation: fadein 2s;
+  }
+
+:root {
+    --purpleDark: #10a5d3;
+    --purpleLight: #2ac3f1;
+}
+
+
+#wrapper{
+    border: 2px solid var(--purpleDark);
+    background-color: #30303b;
+    box-shadow: 0 0px 10px var(--purpleLight);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 6rem;
+    width: 16rem;
+  
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+    padding-bottom: 0.5rem;
+}
+
+
+
+#scoreWrap{
+    border: 2px solid var(--purpleDark);
+    background-color: #30303b;
+    box-shadow: 0 0px 10px var(--purpleLight);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 6rem;
+    width: 80%rem;
+  
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+    padding-bottom: 0.5rem;
+}
+
+
+
+#toOtherPage{
+    color: white;
+    text-decoration:none;
+
+    display: inline-block;
+
+    transition-duration: 0.5s;
+}
+#toOtherPage:hover{
+    transform: scale(1.1);
+}
+
+#submitButton{
+    margin-top: 0.5rem;
+}
+
+
+#submitButton{
+    width: 10rem;
+    height: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  
+    background-color: #30303b;
+    color: white;
+    border: 0px;
+    border-radius: 0px;
+  
+    font-size: 2rem;
+  
+    transition: ease-out 0.6s;
+  
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 var(--purpleDark);
+  }
+#submitButton:hover{
+    color: white;
+    box-shadow: inset 0 -100px 0 0 var(--purpleDark), 0 0px 10px var(--purpleLight);
+}
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+
+.inputFormy{
+    color: white;
+    width: 14rem;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    height: 2rem;
+    /* border-bottom: 2px solid #DF00FE; */
+
+    background-color: #3a3a47;
+
+    transition-duration: 0.3s;
+
+}
+.inputFormy:focus{
+    background-color: #484858;
+
+}
+
+
+#divBackButton{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+#nadpisText{
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#backBut{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.5rem;
+  
+    background-color: #30303b;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+  
+    font-size: 1.5rem;
+  
+    transition: ease-out 0.6s;
+  
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 var(--purpleDark);
+}
+
+#backBut:hover{
+    color: white;
+    box-shadow: inset 0 100px 0 0 var(--purpleDark), 0 0px 10px var(--purpleLight);
+}
