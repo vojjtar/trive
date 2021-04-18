@@ -9,6 +9,7 @@ using triviaWebASPNET.Models;
 
 using MySqlConnector;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 using triviaWebASPNET.ViewModels;
 using triviaWebASPNET.sqlTools;
@@ -27,12 +28,32 @@ namespace triviaWebASPNET.Controllers
         [HttpGet]
         public IActionResult Trivia()
         {
-            return View();
+            string name;
+            string score;
+
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                name = HttpContext.Session.GetString("username");
+                score = ConnectToDatabase.getScore(name);   
+            }
+            else
+            {
+                name = "Guest";
+                score = "No score for guest";   
+            }
+
+            var model = new UserModel {
+                jmeno = name,
+                score = score
+            };
+
+            return View("~/Views/trivia/trivia.cshtml", model);
         }
 
         [HttpPost]
         public IActionResult Trivia(string jmeno, string score) // trivia score funkce
         {
+
             var pripojeni = ConnectToDatabase.Connector();
             string sql = $"UPDATE databazeUzivatelu SET score = score + {score} WHERE jmeno = '{jmeno}';";
 

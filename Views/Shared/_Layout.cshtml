@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +18,20 @@
             <a href="/loginRegister/login"><button class="buttonNavbar">LOGIN</button></a>
             <a href="/loginRegister/register"><button class="buttonNavbar">REGISTER</button></a>
             <a href="/api"><button class="buttonNavbar">API</button></a>
-            <a href="/trivia/scoreboard"><button class="buttonNavbar">SCORE</button></a>
-            <a href="/about"><button class="buttonNavbar">ABOUT</button></a>
+           <!-- <a href="/trivia/scoreboard"><button class="buttonNavbar">SCORE</button></a> -->
+            <a href="/loginRegister/logOut"><button class="buttonNavbar">LOGOUT</button></a>
+            <a href="/about"><button class="buttonNavbar">
+                @{
+                    if (Context.Session.GetString("username") != null)
+                    {
+                        @Context.Session.GetString("username");
+                    }
+                    else
+                    {
+                        @Html.Raw("Guest");
+                    }
+                }
+            </button></a>
 
             <button id="sandwich" onclick="toggle()">MORE</button>
         </div>
@@ -28,8 +42,8 @@
                     <a href="/loginRegister/login"><button class="miniNavButt">LOGIN</button></a>
                     <a href="/loginRegister/register"><button class="miniNavButt">REGISTER</button></a>
                     <a href="/api"><button class="miniNavButt">API</button></a>
-                    <a href="/trivia/scoreboard"><button class="miniNavButt">SCORE</button></a>
-                    <a href="/about"><button class="miniNavButt">ABOUT</button></a>
+                   <!-- <a href="/trivia/scoreboard"><button class="miniNavButt">SCORE</button></a> -->
+                    <a href="/loginRegister/logOut"><button class="miniNavButt">LOGOUT</button></a>
                 </div>
             </div>
         </div>

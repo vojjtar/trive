@@ -30,5 +30,23 @@ namespace triviaWebASPNET.sqlTools
 
             return pripojeni;
         }
+
+        public static string getScore(string jmeno)
+        {
+            var pripojeni = Connector();
+
+            string scoreDatabaze = String.Empty;
+
+            string sql = $"SELECT score FROM databazeUzivatelu where jmeno = '{jmeno}';";
+            var prikaz = new MySqlCommand(sql, pripojeni);
+            var data = prikaz.ExecuteReader();
+
+            if (data.Read())
+            {
+                scoreDatabaze = data["score"].ToString();
+            }
+
+            return scoreDatabaze;
+        }
     }
 }

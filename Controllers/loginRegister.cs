@@ -8,7 +8,10 @@ using Microsoft.Extensions.Logging;
 using triviaWebASPNET.Models;
 
 using MySqlConnector;
-using System.Net.Http;
+//using System.Net.Http;
+//using Microsoft.AspNetCore.Session;
+//using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 using BCrypt.Net;
 // nebo 'using BCrypt = BCrypt.Net.BCrypt;' pak to nebudu muset psat tak dlouhy
@@ -52,16 +55,16 @@ namespace triviaWebASPNET.Controllers
             string scoreDatabaze = String.Empty;
             bool verified = false;
 
-            string sql = $"SELECT heslo, score FROM databazeUzivatelu where jmeno = '{name}';";
+            string sql = $"SELECT heslo FROM databazeUzivatelu where jmeno = '{name}';";
             var prikaz = new MySqlCommand(sql, pripojeni);
             var data = prikaz.ExecuteReader();
 
 
             if (data.Read())
             {
-                Console.WriteLine(data["heslo"]);
+                //Console.WriteLine(data["heslo"]);
                 hesloDatabaze = data["heslo"].ToString();
-                scoreDatabaze = data["score"].ToString();
+                //scoreDatabaze = data["score"].ToString();
 
                 verified = BCrypt.Net.BCrypt.Verify(password, hesloDatabaze);
                 Console.WriteLine(verified);
@@ -69,12 +72,13 @@ namespace triviaWebASPNET.Controllers
             }
             if (verified)
             {
-                var model = new UserModel {
+                HttpContext.Session.SetString("username", name);
+
+                var model = new LoginModel {
                     jmeno = name,
-                    score = scoreDatabaze
                 };
 
-                return View("~/Views/Trivia/trivia.cshtml", model);
+                return View("~/Views/loginRegister/login.cshtml", model);
             }
 
             else
@@ -131,6 +135,15 @@ namespace triviaWebASPNET.Controllers
 
            // return View("~/Views/loginRegister/register.cshtml");
         }
+
+
+        [HttpGet]
+        public IActionResult logOut()
+        {
+            HttpContext.Session.Remove("username");
+            return View("~/Views/loginRegister/login.cshtml");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

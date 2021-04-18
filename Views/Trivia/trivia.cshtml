@@ -1,5 +1,7 @@
 @model triviaWebASPNET.ViewModels.UserModel
 
+@using Microsoft.AspNetCore.Http;
+
 @{
     ViewData["Title"] = "[TRIVE]";
 }
@@ -13,6 +15,7 @@
     {
         jmeno = Model.jmeno;
         score = Model.score;
+        Console.WriteLine(Context.Session.GetString("username"));
     }
     else
     {

@@ -21,6 +21,10 @@ namespace triviaWebASPNET.ViewModels
         }
         */
     }
+    public class LoginModel
+    {
+        public String jmeno { get; set; }
+    }
     public class ScoreBoard
     {
         public List<string> jmena { get; set; }
