@@ -1,4 +1,4 @@
-@model triviaWebASPNET.ViewModels.LoginModel
+@model triviaWebASPNET.ViewModels.LoginRegisterModel
 
 
 @{
@@ -13,7 +13,7 @@
 @{
     if (Model != null)
     {
-        <h3>Vitejte, @Model.jmeno</h3>
+        <h3>Vitejte, @Model.errorMessage</h3> // not epic
     }
 }
 

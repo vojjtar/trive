@@ -48,5 +48,25 @@ namespace triviaWebASPNET.sqlTools
 
             return scoreDatabaze;
         }
+
+        public static MySqlDataReader LoginRegisterNameCheck(string name, MySqlConnector.MySqlConnection pripojeni)
+        {
+            string sql = $"SELECT heslo FROM databazeUzivatelu where jmeno = '{name}';";
+            var prikaz = new MySqlCommand(sql, pripojeni);
+            var data = prikaz.ExecuteReader();
+
+            return data;
+        }
+
+
+        public static void RegisterNewUser(string name, string email, string password, MySqlConnector.MySqlConnection pripojeni)
+        {
+            string passwordHash =  BCrypt.Net.BCrypt.HashPassword(password);
+
+            var sql = $"INSERT INTO databazeUzivatelu (jmeno, heslo, email, score) VALUES ('{name}', '{passwordHash}', '{email}', 0);";
+            var prikaz = new MySqlCommand(sql, pripojeni);
+
+            prikaz.ExecuteNonQuery();
+        }
     }
 }

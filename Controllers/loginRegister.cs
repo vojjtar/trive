@@ -18,6 +18,7 @@ using BCrypt.Net;
 
 using triviaWebASPNET.ViewModels;
 using triviaWebASPNET.sqlTools;
+using triviaWebASPNET.modelTools;
 
 namespace triviaWebASPNET.Controllers
 {
@@ -55,28 +56,19 @@ namespace triviaWebASPNET.Controllers
             string scoreDatabaze = String.Empty;
             bool verified = false;
 
-            string sql = $"SELECT heslo FROM databazeUzivatelu where jmeno = '{name}';";
-            var prikaz = new MySqlCommand(sql, pripojeni);
-            var data = prikaz.ExecuteReader();
-
+            var data = ConnectToDatabase.LoginRegisterNameCheck(name, pripojeni);
 
             if (data.Read())
             {
-                //Console.WriteLine(data["heslo"]);
                 hesloDatabaze = data["heslo"].ToString();
-                //scoreDatabaze = data["score"].ToString();
-
                 verified = BCrypt.Net.BCrypt.Verify(password, hesloDatabaze);
                 Console.WriteLine(verified);
-
             }
             if (verified)
             {
                 HttpContext.Session.SetString("username", name);
 
-                var model = new LoginModel {
-                    jmeno = name,
-                };
+                var model = modelCreate.infoMessageModel(name);
 
                 return View("~/Views/loginRegister/login.cshtml", model);
             }
@@ -96,41 +88,35 @@ namespace triviaWebASPNET.Controllers
         [HttpPost]
         public IActionResult register(string name, string email, string password)
         {
-            var pripojeni = ConnectToDatabase.Connector();
+            string zpravaProUzivatele = String.Empty;
 
-            string sql = $"SELECT * FROM databazeUzivatelu where jmeno = '{name}';";
-            var prikaz = new MySqlCommand(sql, pripojeni);
-            var data = prikaz.ExecuteReader();
+            var pripojeni = ConnectToDatabase.Connector();
+            var data = ConnectToDatabase.LoginRegisterNameCheck(name, pripojeni);
+
+            //Console.WriteLine(modelError.GetType());
+
             if (!data.Read())
             {
                 pripojeni.Close();
                 pripojeni.Open();
 
-                string passwordHash =  BCrypt.Net.BCrypt.HashPassword(password);
-
-                sql = $"INSERT INTO databazeUzivatelu (jmeno, heslo, email, score) VALUES ('{name}', '{passwordHash}', '{email}', 0);";
-                prikaz = new MySqlCommand(sql, pripojeni);
-
-                prikaz.ExecuteNonQuery();
-
-                var modelError = new LoginRegisterModel {
-                    errorMessage = "Uspesna registrace"
-                };
-
-                return View("~/Views/loginRegister/register.cshtml", modelError);
-
+                try
+                {
+                    ConnectToDatabase.RegisterNewUser(name, email, password, pripojeni);
+                    var modelError = modelCreate.infoMessageModel("Uspesna registrace");
+                    return View("~/Views/loginRegister/register.cshtml", modelError);
+                }
+                catch
+                {
+                    var modelError = modelCreate.infoMessageModel("Registrace se nezdarila");
+                    return View("~/Views/loginRegister/register.cshtml", modelError);
+                }
             }
             else
             {
-                var modelError = new LoginRegisterModel {
-                    errorMessage = "Jmeno nebo email uz existuje"
-                };
-
-                Console.WriteLine(data["jmeno"]);
-
-
+                //Console.WriteLine(data["jmeno"]);
+                var modelError = modelCreate.infoMessageModel("Jmeno nebo email uz existuje");
                 return View("~/Views/loginRegister/register.cshtml", modelError);
-
             }
 
            // return View("~/Views/loginRegister/register.cshtml");
