@@ -1,5 +1,7 @@
 @model triviaWebASPNET.ViewModels.ScoreBoard
 
+@using Microsoft.AspNetCore.Http;
+
 @{
     ViewData["Title"] = "[TRIVE]";
 }
@@ -28,9 +30,18 @@
     </div>
 
     @{
+        string userName = Context.Session.GetString("username");
+
         for (int i = 0; i < jmeno.Count; i++)
         {
-            <h2>@String.Format("{0} - {1}", jmeno[i], score[i])</h2>
+            if (jmeno[i] == userName)
+            {
+                <h2 style="color: yellow;">@Html.Raw($"{i+1}.) {jmeno[i]} - {score[i]}")</h2>
+            }
+            else
+            {
+                <h2>@Html.Raw($"{i+1}.) {jmeno[i]} - {score[i]}")</h2>
+            }
         }
     }
 </div>

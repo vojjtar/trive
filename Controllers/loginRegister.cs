@@ -70,6 +70,10 @@ namespace triviaWebASPNET.Controllers
 
                 var model = modelCreate.infoMessageModel(name);
 
+                //Response.Cookies.Append("jmeno", name);
+                //string cookie = Request.Cookies["jmeno"];
+                //Console.WriteLine(cookie);
+
                 return View("~/Views/loginRegister/login.cshtml", model);
             }
 
@@ -81,7 +85,6 @@ namespace triviaWebASPNET.Controllers
 
                 return View("~/Views/loginRegister/login.cshtml", modelError);
             }
-
 
         }
 
@@ -130,6 +133,14 @@ namespace triviaWebASPNET.Controllers
             return View("~/Views/loginRegister/login.cshtml");
         }
 
+        /*
+        public IActionResult pageLeave()
+        {
+            Console.WriteLine("user left");
+            HttpContext.Session.Remove("username");
+            return new EmptyResult();
+        }
+        */
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

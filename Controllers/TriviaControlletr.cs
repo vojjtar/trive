@@ -81,6 +81,11 @@ namespace triviaWebASPNET.Controllers
             // Dictionary<List<string>, string> values = new Dictionary<string, string>();
             List<string> jmenaList = new List<string>();
             List<string> scoreList = new List<string>();
+            var modelScoreBoard = new ScoreBoard {
+                jmena = jmenaList,
+                score = scoreList
+            };
+
             while (data.Read())
             {   
                 /*             
@@ -88,24 +93,17 @@ namespace triviaWebASPNET.Controllers
                 var jmeno = data[1].ToString();
                 Console.WriteLine(jmeno);
                 */
-                scoreList.Add(data[0].ToString());
-                jmenaList.Add(data[1].ToString());
+                modelScoreBoard.jmena.Add(data[1].ToString());
+                modelScoreBoard.score.Add(data[0].ToString());
                 //Dictionary<int, string> dataList = new Dictionary<int, string>();
                 //var jsonString = JsonConvert.SerializeObject(data);
 
             }
-
             //scoreList.ForEach(Console.WriteLine);
             //jmenaList.ForEach(Console.WriteLine);
-
-            var modelScoreBoard = new ScoreBoard {
-                jmena = jmenaList,
-                score = scoreList
-            };
-
-
             return View(modelScoreBoard);
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -58,7 +58,6 @@ namespace triviaWebASPNET.sqlTools
             return data;
         }
 
-
         public static void RegisterNewUser(string name, string email, string password, MySqlConnector.MySqlConnection pripojeni)
         {
             string passwordHash =  BCrypt.Net.BCrypt.HashPassword(password);
