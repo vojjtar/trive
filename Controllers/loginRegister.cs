@@ -31,13 +31,14 @@ namespace triviaWebASPNET.Controllers
             _logger = logger;
         }
 
-
+        [Route("login")]
         [HttpGet]
         public IActionResult login()
         {
             return View();
         }
 
+        [Route("register")]
         [HttpGet]
         public IActionResult register()
         {
@@ -47,6 +48,7 @@ namespace triviaWebASPNET.Controllers
 
         // tady budou posty  // jmeno = Request.Form["jmeno"] atd.
 
+        [Route("login")]
         [HttpPost]
         public IActionResult login(string name, string password)
         {
@@ -74,7 +76,7 @@ namespace triviaWebASPNET.Controllers
                 //string cookie = Request.Cookies["jmeno"];
                 //Console.WriteLine(cookie);
 
-                return View("~/Views/loginRegister/login.cshtml", model);
+                return View("login", model);
             }
 
             else
@@ -83,11 +85,12 @@ namespace triviaWebASPNET.Controllers
                     errorMessage = "Spatne jmeno nebo heslo"
                 };
 
-                return View("~/Views/loginRegister/login.cshtml", modelError);
+                return View("login", modelError);
             }
 
         }
 
+        [Route("register")]
         [HttpPost]
         public IActionResult register(string name, string email, string password)
         {
@@ -107,30 +110,30 @@ namespace triviaWebASPNET.Controllers
                 {
                     ConnectToDatabase.RegisterNewUser(name, email, password, pripojeni);
                     var modelError = modelCreate.infoMessageModel("Uspesna registrace");
-                    return View("~/Views/loginRegister/register.cshtml", modelError);
+                    return View("register", modelError);
                 }
                 catch
                 {
                     var modelError = modelCreate.infoMessageModel("Registrace se nezdarila");
-                    return View("~/Views/loginRegister/register.cshtml", modelError);
+                    return View("register", modelError);
                 }
             }
             else
             {
                 //Console.WriteLine(data["jmeno"]);
                 var modelError = modelCreate.infoMessageModel("Jmeno nebo email uz existuje");
-                return View("~/Views/loginRegister/register.cshtml", modelError);
+                return View("register", modelError);
             }
 
            // return View("~/Views/loginRegister/register.cshtml");
         }
 
-
+        [Route("logout")]
         [HttpGet]
         public IActionResult logOut()
         {
             HttpContext.Session.Remove("username");
-            return View("~/Views/loginRegister/login.cshtml");
+            return View("login");
         }
 
         /*

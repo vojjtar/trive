@@ -15,12 +15,15 @@
     <div id="wrapperMain">
         <div id="navbar">
             <a id="logo" href="/">[T]</a>
-            <a href="/loginRegister/login"><button class="buttonNavbar">LOGIN</button></a>
-            <a href="/loginRegister/register"><button class="buttonNavbar">REGISTER</button></a>
+            <a href="/login"><button class="buttonNavbar">LOGIN</button></a>
+            <a href="/register"><button class="buttonNavbar">REGISTER</button></a>
             <a href="/api"><button class="buttonNavbar">API</button></a>
            <!-- <a href="/trivia/scoreboard"><button class="buttonNavbar">SCORE</button></a> -->
-            <a href="/loginRegister/logOut"><button class="buttonNavbar">LOGOUT</button></a>
-            <a href="/about"><button class="buttonNavbar">
+           <a href="/logout"><button class="buttonNavbar">LOGOUT</button></a>
+
+            <!-- @{string name = Context.Session.GetString("username"); @Html.Raw($"/user/{name}");} -->
+
+            <a href="/user/test"><button class="buttonNavbar">
                 @{
                     if (Context.Session.GetString("username") != null)
                     {
@@ -39,11 +42,11 @@
         <div id="navbarMiniWrap">
             <div id="iNeedThisWrapBecauseIcouldNotSetBackGroundColorOtherWiseSmileyFace"">
                 <div id="navbarMini">
-                    <a href="/loginRegister/login"><button class="miniNavButt">LOGIN</button></a>
-                    <a href="/loginRegister/register"><button class="miniNavButt">REGISTER</button></a>
+                    <a href="/login"><button class="miniNavButt">LOGIN</button></a>
+                    <a href="/register"><button class="miniNavButt">REGISTER</button></a>
                     <a href="/api"><button class="miniNavButt">API</button></a>
                    <!-- <a href="/trivia/scoreboard"><button class="miniNavButt">SCORE</button></a> -->
-                    <a href="/loginRegister/logOut"><button class="miniNavButt">LOGOUT</button></a>
+                    <a href="/logout"><button class="miniNavButt">LOGOUT</button></a>
                 </div>
             </div>
         </div>
