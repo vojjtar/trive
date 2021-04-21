@@ -17,6 +17,7 @@ namespace triviaWebASPNET.modelTools
 
             return modelError;
         }
+
         public static LoginModel loginMessageModel(string name)
         {
             var modelLogin = new LoginModel {
@@ -24,6 +25,18 @@ namespace triviaWebASPNET.modelTools
             };
 
             return modelLogin;
+        }
+
+        public static userInfoProfileModel userInfoProfileModelCreator(string jmeno, string email, string datumPripojeni, string skore)
+        {
+            var userInfo = new userInfoProfileModel {
+                jmeno = jmeno,
+                email = email,
+                datumPripojeni = datumPripojeni,
+                skore = skore
+            };
+
+            return userInfo;
         }
     }
 }

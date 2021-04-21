@@ -30,4 +30,12 @@ namespace triviaWebASPNET.ViewModels
         public List<string> jmena { get; set; }
         public List<string> score { get; set; }
     }
+
+    public class userInfoProfileModel
+    {
+        public string jmeno { get; set; }
+        public string email { get; set; }
+        public string datumPripojeni { get; set; }
+        public string skore { get; set; }
+    }
 }

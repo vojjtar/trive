@@ -33,9 +33,22 @@ namespace triviaWebASPNET.Controllers
 
         [Route("user/{username}")]
         [HttpGet]
-        public IActionResult user()
+        public IActionResult user(string username)
         {
-            return View();
+            var pripojeni = ConnectToDatabase.Connector();
+            var data = ConnectToDatabase.getInfoAboutUser(username, pripojeni);
+
+            if (data.Read())
+            {
+                var modelUser = modelCreate.userInfoProfileModelCreator(data["jmeno"].ToString(), data["email"].ToString(), data["datumPripojeni"].ToString(), data["score"].ToString());
+
+                return View(modelUser);
+            }
+            else
+            {
+                Console.WriteLine("userNotFound");
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

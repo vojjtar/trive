@@ -60,12 +60,23 @@ namespace triviaWebASPNET.sqlTools
 
         public static void RegisterNewUser(string name, string email, string password, MySqlConnector.MySqlConnection pripojeni)
         {
+            string date = DateTime.Today.ToString("dd/MM/yyyy");
+
             string passwordHash =  BCrypt.Net.BCrypt.HashPassword(password);
 
-            var sql = $"INSERT INTO databazeUzivatelu (jmeno, heslo, email, score) VALUES ('{name}', '{passwordHash}', '{email}', 0);";
+            var sql = $"INSERT INTO databazeUzivatelu (jmeno, heslo, email, score, datumPripojeni) VALUES ('{name}', '{passwordHash}', '{email}', 0, '{date}');";
             var prikaz = new MySqlCommand(sql, pripojeni);
 
             prikaz.ExecuteNonQuery();
+        }
+
+        public static MySqlDataReader getInfoAboutUser(string name, MySqlConnector.MySqlConnection pripojeni)
+        {
+            string sql = $"SELECT jmeno, email, score, datumPripojeni FROM databazeUzivatelu where jmeno = '{name}';";
+            var prikaz = new MySqlCommand(sql, pripojeni);
+            var data = prikaz.ExecuteReader();
+
+            return data;
         }
     }
 }

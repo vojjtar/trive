@@ -1,7 +1,40 @@
+@model triviaWebASPNET.ViewModels.userInfoProfileModel
+
 @{
     ViewData["Title"] = "[TRIVE]";
 }
 
+@using Microsoft.AspNetCore.Http;
+
 <link rel="stylesheet" href="~/css/userProfile.css">
 
-<h1>LOL</h1>
+
+@{
+    string jmeno;
+    string score;
+    string datumPripojeni;
+    string email;
+
+    if (Model != null)
+    {
+        jmeno = Model.jmeno;
+        score = Model.skore;
+        datumPripojeni = Model.datumPripojeni;
+        email = Model.email;
+
+
+        <h1>@jmeno</h1>
+        <h1>@score</h1>
+        <h1>@datumPripojeni</h1>
+        <h1>@email</h1>
+
+    }
+    else
+    {
+        <h1>uzivatel neexistuje</h1>
+    }
+}
+
+
+
+

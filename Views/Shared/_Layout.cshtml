@@ -23,7 +23,13 @@
 
             <!-- @{string name = Context.Session.GetString("username"); @Html.Raw($"/user/{name}");} -->
 
-            <a href="/user/test"><button class="buttonNavbar">
+            @{
+                string username = Context.Session.GetString("username");
+                if (username == null) username = "Guest";
+                string urlUser = $"/user/{username}";
+            }
+
+            <a href=@urlUser><button class="buttonNavbar">
                 @{
                     if (Context.Session.GetString("username") != null)
                     {
